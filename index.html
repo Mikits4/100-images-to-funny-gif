@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Image to MP4 (In Browser)</title>
+  <title>Image to MP4 Converter</title>
   <style>
+    body {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-family: Arial, sans-serif;
+    }
     #loading {
-      display: none; /* Fixed: Only set once */
+      display: none;
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.8);
@@ -14,16 +20,57 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
+      flex-direction: column;
     }
     #preview {
       max-width: 100%;
       margin-top: 20px;
-      display: none; /* Fixed: Only set once */
+      display: none;
     }
     #download {
-      display: none; /* Fixed: Only set once */
+      display: none;
       margin-top: 10px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .input-group {
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
     }
   </style>
 </head>
 <body>
+  <h1>Image to MP4 Converter</h1>
+  
+  <div class="input-group">
+    <input type="file" id="input" multiple accept="image/*" />
+    <button id="make-video" disabled>Create MP4</button>
+  </div>
+
+  <p id="status">Select images to begin</p>
+  <a id="download" href="#" download="video.mp4">Download MP4</a>
+  <video id="preview" controls></video>
+
+  <div id="loading">
+    <div class="spinner">🔄</div>
+    <div>Processing video...</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
