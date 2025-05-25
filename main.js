@@ -29,14 +29,21 @@ document.getElementById('make-video').onclick = async () => {
   );
 
   const data = ffmpeg.FS('readFile', 'out.mp4');
-  const videoBlob = new Blob([data.buffer], { type: 'video/mp4' });
-  const videoURL = URL.createObjectURL(videoBlob);
+const videoBlob = new Blob([data.buffer], { type: 'video/mp4' });
+const videoURL = URL.createObjectURL(videoBlob);
 
-  const downloadLink = document.getElementById('download');
-  downloadLink.href = videoURL;
-  downloadLink.download = 'video.mp4';
-  downloadLink.textContent = 'Download MP4';
-  downloadLink.style.display = 'block';
+// Set up download link
+const downloadLink = document.getElementById('download');
+downloadLink.href = videoURL;
+downloadLink.download = 'video.mp4';
+downloadLink.textContent = 'Download MP4';
+downloadLink.style.display = 'block';
 
-  document.getElementById('status').textContent = "Done!";
+// Display video preview
+const preview = document.getElementById('preview');
+preview.src = videoURL;
+preview.style.display = 'block';
+preview.load();
+
+document.getElementById('status').textContent = "Done!";
 };
