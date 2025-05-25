@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Image to MP4 (In Browser)</title>
+  <style>
+    #loading {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #preview {
+      max-width: 100%;
+      margin-top: 20px;
+      display: none;
+    }
+    #download {
+      display: none;
+      margin-top: 10px;
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
   <h1>Image to MP4</h1>
-  <input type="file" id="input" multiple accept="image/*">
-  <button id="make-video">Create MP4</button>
-  <p id="status"></p>
-  <a id="download" style="display:none">Download Video</a>
 
-  <!-- Include FFmpeg.wasm from CDN -->
+  <input type="file" id="input" multiple accept="image/*" />
+  <button id="make-video">Create MP4</button>
+
+  <p id="status"></p>
+
+  <a id="download" href="#" download="video.mp4">Download MP4</a>
+  <br />
+  <video id="preview" controls></video>
+
+  <div id="loading">🔄 Please wait... Processing video.</div>
+
+  <!-- Load ffmpeg.wasm BEFORE your script -->
   <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
   <script src="main.js"></script>
 </body>
