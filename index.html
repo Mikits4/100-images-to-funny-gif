@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image to MP4 (In Browser)</title>
+</head>
+<body>
+  <h1>Image to MP4</h1>
+  <input type="file" id="input" multiple accept="image/*">
+  <button id="make-video">Create MP4</button>
+  <p id="status"></p>
+  <a id="download" style="display:none">Download Video</a>
+
+  <!-- Include FFmpeg.wasm from CDN -->
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
